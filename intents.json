@@ -1,0 +1,51 @@
+{"intents": [
+    {"tag": "greeting",
+     "patterns": ["Hi", "Hey", "Is anyone there?", "Hello", "Hay"],
+     "responses": ["Hello", "Hi", "Hi there"]
+    },
+    {"tag": "goodbye",
+     "patterns": ["Bye", "See you later", "Goodbye"],
+     "responses": ["See you later", "Have a nice day", "Bye! Come back again"]
+    },
+    {"tag": "thanks",
+     "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help"],
+     "responses": ["Happy to help!", "Any time!", "My pleasure", "You're most welcome!"]
+    },
+    {"tag": "about",
+     "patterns": ["Who are you?", "What are you?", "Who you are?" ],
+     "responses": ["I'm Tuna, your bot assistant", "I'm Tuna, an Artificial Intelligent bot"]
+    },
+    {"tag": "name",
+    "patterns": ["what is your name", "what should I call you", "whats your name?"],
+    "responses": ["You can call me Tuna.", "I'm Tuna!", "Just call me as Tuna"]
+    },
+    {"tag": "help",
+    "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need a support", "I need a help", "support me please"],
+    "responses": ["Tell me how can assist you", "Tell me your problem to assist you", "Yes Sure, How can I support you"]
+    },
+    {"tag": "mood",
+    "patterns": ["play music", "music", "I'm bored"],
+    "responses": ["Lets suggest some music based on your current mood! pose for the camera :)"]
+    },   
+    {"tag": "happy",
+    "patterns": ["happy", "I'm happy"],
+    "responses": ["That's great! Would you like some happy music to keep the mood up?"]
+    },  
+    {"tag": "sad",
+    "patterns": ["sad", "i feel sad","i'm sad"],
+    "responses": ["Hope you feel better. Would you like some music that'll cheer you up?"]
+    },
+    {"tag": "angry",
+    "patterns": ["angry", "i feel angry","i'm angry"],
+    "responses": ["would you like some calming music to ease the mind?"]
+    },
+    {"tag": "createaccount",
+    "patterns": ["I need to create a new account", "how to open a new account", "I want to create an account", "can you create an account for me", "how to open a new account"],
+    "responses": ["You can just easily create a new account from our web site", "Just go to our web site and follow the guidelines to create a new account"]
+    },
+    {"tag": "feedback",
+    "patterns": ["have a complaint", "I want to give feedback", "there is a complaint about a service"],
+    "responses": ["Please provide us your feedback", "Please mention your complaint, we will reach you and sorry for any inconvenience caused"]
+    }
+]
+}
