@@ -3,3 +3,9 @@ Music has always been known to change people's moods. Capturing and recognizing 
 The user's current emotion is used to generate an automatic music playlist. When compared to the algorithm in the existing literature, it performs better in terms of computational time.
 In this system, the user can chat with the chatbot. The emotion will be detected and the music player will start playing particular music. The main objective of our music recommendation system based on the user's emotions is to provide users with suggestions that match their preferences.
 The front-end involves Html, CSS, and JavaScript and the back-end involves Python, MySQL/firebase. The libraries used include OpenCV, etc. 
+
+
+##How to run the project:
+1) Download the files in the "working folder"
+2) Go to command prompt and run the following command:
+                python app.py
