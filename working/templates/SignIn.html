@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Sign In</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"> </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"> </script> 
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        form{
+        text-align: center;
+    }
+    .h1{
+        text-align: center;
+        font-size: 40px;
+        margin-top: 20px;
+        color: rgb(19, 13, 1);
+        font-style: oblique;
+        font-family:Monotype Corsiva;
+        font-weight: bold;
+    }
+    .d{
+        margin-left: 400px;
+        align-self: center;
+        width: 400px;
+        height: 250px;
+        border: 2px solid rgb(19, 13, 1);
+    }
+    .navbar{
+    overflow: hidden;
+    background-color: rgb(216, 181, 246);
+    }
+    .navbar a{
+    float: right;
+    color: rgb(19, 13, 1);
+    display: block;
+    font-size: 18px;
+    padding: 14px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    }
+    .navbar #logo {
+        color: rgb(19, 13, 1);
+        font-size: 40px;
+        padding: 0 20px;
+        font-weight: bold;
+        font-family: pristina;
+        /* transition: 0.4s; */
+        float: left;
+    }
+    .navbar a:hover{
+    /* background-color: #ddd; */
+        color: floralwhite;
+    }
+    .footer {
+        padding: 20px;
+        text-align: center;
+        background-color:  rgb(216, 181, 246);
+    }
+    .footer a {
+        color: rgb(19, 13, 1);
+    }
+    .footer a:hover {
+        color: floralwhite;
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#default" id="logo">Tunelist</a>
+        <div id="navbar-right">
+          <a href="Signup">Signup</a>
+          <a href="SignIn">SignIn</a>
+          <!-- <a href="aboutus.html">About Us</a> -->
+          <a href="recmnd">Recommend</a>
+          <a href="home">Home</a>
+        </div>
+    </div>
+
+    <h1 class="h1">Sign In</h1>
+    <div class="d">
+        <form onSubmit="return check(this)" method="post" action="/">
+            <label for="name">Username:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <!-- <label for="emailid">email:</label><br>
+            <input type="email" id="emailid" name="emailid"><br>
+            <label for="phno">Phone Number:</label><br>
+            <input type="text" id="phno" name="phno"><br> -->
+            <label for="pass">Password:</label><br>
+            <input type="password" id="pass" name="pass"><br>
+            <!-- <label for="cpass">Confirm Password:</label><br>
+            <input type="password" id="cpass" name="cpass"><br> -->
+            <br>
+            <button type="login">Login</button>
+            <button type="reset" value="Reset">Reset</button>
+        </form>
+    </div>
+
+    <footer class="footer" style="bottom: 0;position:fixed;width: 100%; text-align: center;">
+        <a href="#"><i class="fa fa-facebook-official"></i></a>
+        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-flickr"></i></a>
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <p class="footer-content">
+          Copyright 2021 Tunelist 
+        </p>
+    </footer>
+
+
+
+</body>
+</html>
