@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"> </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"> </script> 
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <link rel="stylesheet" href="home.css">
+    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
+    <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+    <title>TUNELIST</title>
+    <style>
+      .navbar{
+        overflow: hidden;
+        background-color: rgb(216, 181, 246);
+        /*height: 60px;
+        width: 1150px;
+        transition: 0.4s;*/
+    }
+    /*.navbar #logo{
+        color: rgb(248, 247, 244)e;
+        font-size: 40px;
+        padding: 0 20px;
+        font-weight: bold;
+        font-family: pristina;
+        /* transition: 0.4s; */
+        /*float: left;   
+    }*/
+    .navbar a{
+        float: right;
+        color: rgb(19, 13, 1);
+        display: block;
+        font-size: 18px;
+        padding: 14px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    .navbar a:hover{
+        /* background-color: #ddd; */
+        color: floralwhite;
+    }
+    .navbar input[type = text]{
+        float: left;
+        padding: 4px;
+        border: 1px;
+        margin-left: 20px;
+        margin-top: 10px;
+        margin-right: 6px;
+        font-size: 15px;
+    }
+    
+    img{
+        object-fit:fill;
+        /* opacity: 0.6; */
+        /* min-height: 100vh; */
+        height: 72vh;
+        /* min-width: 100vw; */
+        width: 72vh;
+        text-align:center;
+    }
+    
+    /* div{
+        display:block; 
+        cursor: pointer; 
+        width: 10px; 
+        height:10px; 
+        background-color:#000000;
+    } */
+      
+    button{
+        cursor: pointer; 
+        font-family:Tahoma; 
+        font-weight: bold;
+        font-size:10px; 
+        background-color:#00ffff;
+        color:blue;
+        padding: 1px 4px;
+        margin-bottom: 250px;
+    }
+    
+    /* video{
+        object-fit: cover;
+        opacity: 0.6;
+        min-height: 100vh;
+        height: 80vh;
+        min-width: 100vw;
+        width: 100%;
+    } */
+    .footer {
+    padding: 20px;
+    text-align: center;
+    background-color:  rgb(216, 181, 246);
+    }
+    
+    .footer a {
+    color:  rgb(19, 13, 1);
+    }
+    
+    .footer a:hover {
+    color: floralwhite;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <!--<a href="#default" id="logo">Tunelist</a>-->
+        <input type="text" placeholder="Search..">
+        <div id="navbar-right">
+          <a href="Signup">Signup</a>
+          <a href="SignIn">SignIn</a>
+          <!-- <a href="aboutus.html">About Us</a> -->
+          <a href="recmnd">Recommend</a>
+          <a href="home">Home</a>
+        </div>
+    </div>
+
+      <!--Insert a video-->
+    <!-- <img src="./tunelist.png" style:"width:100%;height:200px;" autoplay loop muted></img> -->
+
+    <!--Insert image-->
+    <img src="/static/Tunelist2.png" autoplay loop muted style="align-items: center; margin-left:400px"></img>
+
+    <audio id="sound1" hidden src="/static/Strawberries_And_Cigarettes-Troye.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="playAudio">Play</button>
+    
+    <script type="text/javascript">
+    document.getElementById("playAudio").addEventListener("click", function(){
+        var audio = document.getElementById('sound1');
+      if(this.className == 'is-playing'){
+        this.className = "";
+        this.innerHTML = "Play"
+        audio.pause();
+      }else{
+        this.className = "is-playing";
+        this.innerHTML = "Pause";
+        audio.play();
+      }
+    
+    });
+    </script>
+
+    <!-- <py-script src="C:\Shruti\PES-5th Sem\Software Engineering\Project_code\tuna1.py"></py-script> -->
+
+    <!-- <py-script>
+    import json 
+    import numpy as np
+    import tensorflow as tf
+    from tensorflow import keras
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Dense, Embedding, GlobalAveragePooling1D
+    from tensorflow.keras.preprocessing.text import Tokenizer
+    from tensorflow.keras.preprocessing.sequence import pad_sequences
+    from sklearn.preprocessing import LabelEncoder
+
+
+
+      with open('C:\Shruti\PES-5th Sem\Software Engineering\Project_code\intents.json') as file:
+          data = json.load(file)
+    
+      training_sentences = []
+      training_labels = []
+      labels = []
+      responses = []
+
+
+      for intent in data['intents']:
+          for pattern in intent['patterns']:
+              training_sentences.append(pattern)
+        training_labels.append(intent['tag'])
+          responses.append(intent['responses'])
+    
+          if intent['tag'] not in labels:
+              labels.append(intent['tag'])
+        
+      num_classes = len(labels)
+
+      lbl_encoder = LabelEncoder()
+      lbl_encoder.fit(training_labels)
+      training_labels = lbl_encoder.transform(training_labels)
+
+      vocab_size = 1000
+      embedding_dim = 16
+      max_len = 20
+      oov_token = "<OOV>"
+
+      tokenizer = Tokenizer(num_words=vocab_size, oov_token=oov_token)
+      tokenizer.fit_on_texts(training_sentences)
+      word_index = tokenizer.word_index
+      sequences = tokenizer.texts_to_sequences(training_sentences)
+      padded_sequences = pad_sequences(sequences, truncating='post', maxlen=max_len)
+
+      model = Sequential()
+      model.add(Embedding(vocab_size, embedding_dim, input_length=max_len))
+      model.add(GlobalAveragePooling1D())
+      model.add(Dense(16, activation='relu'))
+      model.add(Dense(16, activation='relu'))
+      model.add(Dense(num_classes, activation='softmax'))
+
+      model.compile(loss='sparse_categorical_crossentropy', 
+              optimizer='adam', metrics=['accuracy'])
+
+#model.summary()
+
+      epochs = 700
+      history = model.fit(padded_sequences, np.array(training_labels), epochs=epochs)
+
+# to save the trained model
+      model.save("chat_model")
+
+      import pickle
+
+# to save the fitted tokenizer
+      with open('tokenizer.pickle', 'wb') as handle:
+          pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    
+# to save the fitted label encoder
+      with open('label_encoder.pickle', 'wb') as ecn_file:
+          pickle.dump(lbl_encoder, ecn_file, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+
+      import json 
+      import numpy as np
+      from tensorflow import keras
+      from sklearn.preprocessing import LabelEncoder
+
+      import colorama 
+      colorama.init()
+      from colorama import Fore, Style, Back
+
+      import random
+      import pickle
+
+      import cv2
+      from fer import FER
+      import matplotlib.pyplot as plt
+      import matplotlib.image as mpimg
+      from time import sleep 
+
+      def getEmotion():
+    
+          video=cv2.VideoCapture(0)
+
+          a=0
+
+          while True:
+              a=a+1
+              check, frame = video.read()
+              sleep(1)
+              cv2.imshow("Capturing",frame)
+
+              if cv2.waitKey(1) & 0xFF==ord('q') or a==5:
+                  break
+
+          showPic=cv2.imwrite("Photo.jpg",frame)
+
+
+          video.release()
+          cv2.destroyAllWindows
+
+          input_image=cv2.imread('Photo.jpg')
+    """
+    try:
+      filename = take_photo()
+      print('Saved to {}'.format(filename))
+  
+      # Show the image which was just taken.
+      # display(Image(filename))
+    except Exception as err:
+      # Errors will be thrown if the user does not have a webcam or if they do not
+      # grant the page permission to access it.
+      print(str(err))
+    input_image=Image(filename)"""
+
+          emotion_detector = FER(mtcnn=True)
+
+          result=emotion_detector.detect_emotions(input_image)
+
+          bounding_box=result[0]["box"]
+          emotions = result[0]["emotions"]
+          cv2.rectangle(input_image,(
+            bounding_box[0], bounding_box[1]),(
+            bounding_box[0] + bounding_box[2], bounding_box[1] + bounding_box[3]),(0, 155, 255), 2,)
+
+          emotion_name, score = emotion_detector.top_emotion(input_image)
+          for index, (emotion_name, score) in enumerate(emotions.items()):
+              color = (211, 211,211) if score < 0.01 else (255, 0, 0)
+              emotion_score = "{}: {}".format(emotion_name, "{:.2f}".format(score))
+
+              max_key = max(emotions,key=emotions.get)
+              cv2.putText(input_image,emotion_score,
+    			            (bounding_box[0], bounding_box[1] + bounding_box[3] + 30 + index * 15),
+    			            cv2.FONT_HERSHEY_SIMPLEX,0.5,color,1,cv2.LINE_AA,)
+        # print(emotion_name)
+              print(emotion_score)
+    #Save the result in new image file
+          cv2.imwrite("emotion.jpg", input_image)
+
+    # Read image file using matplotlib's image module
+          result_image = mpimg.imread('emotion.jpg')
+          imgplot = plt.imshow(result_image)
+    # Display Output Image
+          plt.show()
+          print(max_key)
+
+with open(r"C:\Shruti\PES-5th Sem\Software Engineering\Project_code\intents.json") as file:
+    data = json.load(file)
+
+
+def chat():
+    # load trained model
+    model = keras.models.load_model('chat_model')
+
+    # load tokenizer object
+    with open('tokenizer.pickle', 'rb') as handle:
+        tokenizer = pickle.load(handle)
+
+    # load label encoder object
+    with open('label_encoder.pickle', 'rb') as enc:
+        lbl_encoder = pickle.load(enc)
+
+    # parameters
+    max_len = 20
+    
+    while True:
+        print(Fore.LIGHTBLUE_EX + "User: " + Style.RESET_ALL, end="")
+        inp = input()
+        if inp.lower() == "pose":
+            getEmotion()
+            break
+
+        result = model.predict(keras.preprocessing.sequence.pad_sequences(tokenizer.texts_to_sequences([inp]),
+                                             truncating='post', maxlen=max_len))
+        tag = lbl_encoder.inverse_transform([np.argmax(result)])
+
+        for i in data['intents']:
+            if i['tag'] == tag:
+                print(Fore.GREEN + "ChatBot:" + Style.RESET_ALL , np.random.choice(i['responses']))
+
+        # print(Fore.GREEN + "ChatBot:" + Style.RESET_ALL,random.choice(responses))
+
+print(Fore.YELLOW + "Start messaging with the bot (type quit to stop)!" + Style.RESET_ALL)
+chat()
+    </py-script> -->
+
+    <!-- <div>
+      <audio id="sound1" src="Ichak_Dana_Beechak.mp3" type="audio/mpeg"></audio>
+      <button onclick="document.getElementById('sound1').play();">Play</button>
+    </div>
+
+    <script>
+      var x = document.getElementById("sound1");
+      function playAudio() {
+        x.play();
+      }
+
+      function pauseAudio() {
+        x.pause();
+      } -->
+      <!-- // var button = document.getElementById("button");
+      // // var audio = document.getElementById("player");
+
+      // button.addEventListener("click", function(){
+      // if(audio.paused){
+      //   audio.play();
+      //   button.innerHTML = "Pause";
+      // } 
+      // else {
+      //   audio.pause();
+      //   button.innerHTML = "Play";
+      // }
+      // }); -->
+    <!-- </script> -->
+
+    <!-- <iframe 
+      src="http://localhost:9000/?kernel=python&toolbar=1"
+      width="100%" 
+      height="100%">
+    </iframe> -->
+
+    <footer class="footer" style="bottom: 0;position:fixed;width: 100%;">
+      <a href="#"><i class="fa fa-facebook-official"></i></a>
+      <a href="#"><i class="fa fa-pinterest-p"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-flickr"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+      <p class="footer-content">
+        Copyright 2021 Tunelist 
+      </p>
+    </footer>
+    
+    
+</body>
+</html>
